@@ -28,22 +28,19 @@ curl -fsSL \
 /usr/local/bin/server-scripts/
 ```
 
-На текущий момент устанавливаются:
-
-```text
-cg
-s3-backup-rotate.sh
-```
+Состав устанавливаемых скриптов определяется текущей версией `install.sh`.
 
 ## 3. Структура репозитория
 
 ```text
 server-scripts/
 ├── scripts/
-│   ├── cg.sh
-│   └── s3-backup-rotate.sh
+│   ├── ...
+│   └── ...
 └── install.sh
 ```
+
+В каталоге `scripts/` находятся серверные скрипты, доступные для установки.
 
 ## 4. Основной URL
 
@@ -61,16 +58,10 @@ https://raw.githubusercontent.com/palma-yasen/server-scripts/main/scripts
 ls -lah /usr/local/bin/server-scripts/
 ```
 
-Проверяем установленные `.sh`-скрипты:
+Проверяем установленные скрипты:
 
 ```bash
-ls -lah /usr/local/bin/server-scripts/*.sh
-```
-
-Проверяем `cg`:
-
-```bash
-ls -lah /usr/local/bin/server-scripts/cg
+ls -lah /usr/local/bin/server-scripts/*
 ```
 
 ## 6. Проверка PATH
@@ -81,38 +72,19 @@ ls -lah /usr/local/bin/server-scripts/cg
 source /etc/profile.d/server-scripts.sh
 ```
 
-Проверяем доступность `cg`:
+Проверяем доступность установленных команд:
 
 ```bash
-which cg
+echo "$PATH"
 ```
 
-Ожидаемый результат:
+Каталог должен присутствовать в `PATH`:
 
 ```text
-/usr/local/bin/server-scripts/cg
+/usr/local/bin/server-scripts
 ```
 
-## 7. Проверка `cg`
-
-Запускаем:
-
-```bash
-cg
-```
-
-Должна появиться справка:
-
-```text
-Usage:
-  cg new <component>
-  cg status [component]
-  cg pull [component]
-  cg commit <component> "message"
-  cg push [component]
-```
-
-## 8. Обновление скриптов
+## 7. Обновление скриптов
 
 Для повторной установки и обновления скриптов достаточно снова выполнить:
 
@@ -124,7 +96,9 @@ curl -fsSL \
 
 Установщик повторно скачает актуальные версии скриптов из репозитория.
 
-## 9. Расположение установленных файлов
+## 8. Расположение установленных файлов
+
+Скрипты:
 
 ```text
 /usr/local/bin/server-scripts/
