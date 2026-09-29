@@ -22,9 +22,22 @@ echo "  Downloading s3-backup-rotate.sh..."
 curl -fsSL "$BASE_URL/s3-backup-rotate.sh" -o "$TARGET_DIR/s3-backup-rotate.sh"
 chmod 755 "$TARGET_DIR/s3-backup-rotate.sh"
 
+echo "  Configuring PATH..."
+
+PROFILE="/etc/profile.d/server-scripts.sh"
+
+cat > "$PROFILE" <<EOF
+export PATH="$TARGET_DIR:\$PATH"
+EOF
+
+chmod 644 "$PROFILE"
+
 echo
 echo "Installation completed."
 echo
 echo "Installed scripts:"
 echo "  $TARGET_DIR/cg"
 echo "  $TARGET_DIR/s3-backup-rotate.sh"
+echo
+echo "PATH:"
+echo "  $TARGET_DIR"
